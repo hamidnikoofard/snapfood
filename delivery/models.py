@@ -18,6 +18,7 @@ class Delivery(models.Model):
     destination = models.CharField(max_length=255)
     order_id = models.CharField(max_length=255)
     estimated_time = models.IntegerField()
+    price = models.IntegerField()
 
     def __str__(self):
         return self.order_id

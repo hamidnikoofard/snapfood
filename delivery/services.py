@@ -5,7 +5,6 @@ from geopy.distance import geodesic
 from geopy.exc import GeocoderServiceError, GeocoderTimedOut, GeocoderUnavailable
 from geopy.geocoders import Nominatim
 
-# میانگین سرعت تحویل شهری (کیلومتر بر ساعت)
 AVERAGE_SPEED_KMH = 30
 GEOCODE_TIMEOUT = 10
 MAX_RETRIES = 3

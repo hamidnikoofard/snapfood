@@ -24,6 +24,7 @@ class DeliveryCreateView(generics.CreateAPIView):
     def perform_create(self, serializer):
         self.origin = self.request.data.get('origin')
         self.destination = self.request.data.get('destination')
+        self.price = self.request.data.get('price')
 
         try:
             estimated_time = get_estimated_time_minutes(
@@ -36,7 +37,10 @@ class DeliveryCreateView(generics.CreateAPIView):
         status_obj, _ = DeliveryStatusChoices.objects.get_or_create(
             status='pending',
         )
-        serializer.save(status=status_obj, estimated_time=estimated_time)
+
+        self.price = estimated_time * 1000
+        serializer.save(status=status_obj,
+                        estimated_time=estimated_time, price=self.price)
 
 
 class CreateUserView(generics.CreateAPIView):

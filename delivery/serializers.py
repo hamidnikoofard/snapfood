@@ -10,8 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class DeliverySerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)
     # user = UserSerializer(read_only=True)
+    user = serializers.StringRelatedField(read_only=True)
     status = serializers.StringRelatedField(read_only=True)
 
     class Meta:
@@ -21,10 +21,13 @@ class DeliverySerializer(serializers.ModelSerializer):
 
 class DeliveryCreateSerializer(serializers.ModelSerializer):
     estimated_time = serializers.IntegerField(read_only=True)
+    # user = serializers.StringRelatedField()
+    price = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Delivery
-        fields = ['origin', 'destination', 'order_id', 'estimated_time']
+        fields = ['user', 'origin', 'destination',
+                  'order_id', 'estimated_time', 'price']
 
 
 class DeliveryStatusSerializer(serializers.ModelSerializer):
